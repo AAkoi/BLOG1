@@ -1,5 +1,32 @@
 <!-- 优化后的页首引入：按功能模块化加载 -->
 <script>window.__KEEP_IMPOSSIBLE__ = true;</script>
+<script>
+if (window.__KEEP_IMPOSSIBLE__) {
+(function(){
+  var NodeProto = Node && Node.prototype;
+  if (NodeProto && !NodeProto.__impossible_patched__) {
+    NodeProto.__impossible_patched__ = true;
+    var origRemoveChild = NodeProto.removeChild;
+    if (origRemoveChild) {
+      NodeProto.removeChild = function(child){
+        try { if (child && child.classList && child.classList.contains('possible-impossible')) return child; } catch (e) {}
+        return origRemoveChild.call(this, child);
+      };
+    }
+    var ElementProto = Element && Element.prototype;
+    if (ElementProto) {
+      var origRemove = ElementProto.remove;
+      if (origRemove) {
+        ElementProto.remove = function(){
+          try { if (this && this.classList && this.classList.contains('possible-impossible')) return; } catch (e) {}
+          return origRemove.call(this);
+        };
+      }
+    }
+  }
+})();
+}
+</script>
 <script defer src="https://cdn.statically.io/gh/AAkoi/BLOG1/master/js/header/moveNavIntoTitle.js?v=20250813-5"></script>
 <script defer src="https://cdn.statically.io/gh/AAkoi/BLOG1/master/js/nav/ocean.js?v=20250813-5"></script>
 <script defer src="https://cdn.statically.io/gh/AAkoi/BLOG1/master/js/nav/ripple.js?v=20250813-5"></script>
