@@ -7,6 +7,6 @@
 --box-shadow: 0 6px 16px rgba(0,0,0,.08);
 --box-shadow-large: 0 12px 28px rgba(0,0,0,.16);
 }
-@import url("../cnblogs-onelight.css");
-@import url("./overrides/postinfo.css");
-@import url("./overrides/homeCards.css"); 
+@import url("https://cdn.jsdelivr.net/gh/AAkoi/BLOG1@master/css/overrides/homeCards.css");
+@import url("https://cdn.jsdelivr.net/gh/AAkoi/BLOG1@master/css/overrides/postinfo.css");
+@import url("https://cdn.jsdelivr.net/gh/AAkoi/BLOG1@master/cnblogs-onelight.css");
