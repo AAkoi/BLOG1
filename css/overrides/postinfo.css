@@ -96,7 +96,8 @@ body:has(#cnblogs_post_body) .post #cnblogs_post_body { margin-right: 0 !importa
 .post .postDesc::before { content: none !important; display: none !important; }
 
 /* 收藏按钮：蓝色主题芯片 */
-.post .postDesc a[onclick^="AddToWz"] {
+.post .postDesc a[onclick^="AddToWz"],
+.post .postDesc a[onclick*="AddToWz("] {
 	background: linear-gradient(90deg, rgb(from var(--theme-color) r g b / .14), rgb(from var(--theme-color) r g b / .10)) !important;
 	border: 1px solid rgb(from var(--theme-color) r g b / .32) !important;
 	color: var(--theme-color) !important;
@@ -106,7 +107,8 @@ body:has(#cnblogs_post_body) .post #cnblogs_post_body { margin-right: 0 !importa
 	text-decoration: none !important;
 	font-weight: 700 !important;
 }
-.post .postDesc a[onclick^="AddToWz"]:hover {
+.post .postDesc a[onclick^="AddToWz"]:hover,
+.post .postDesc a[onclick*="AddToWz("]:hover {
 	background: var(--item-hover-bg-color) !important;
 	filter: brightness(1.05) !important;
 }
@@ -141,4 +143,29 @@ body:has(#cnblogs_post_body) .post #cnblogs_post_body { margin-right: 0 !importa
 	font-weight: 800 !important;
 	box-shadow: var(--box-shadow) !important;
 	text-decoration: none !important;
+} 
+
+/* 精准移除文章页 postDesc 的伪元素头像（含单冒号兼容） */
+.post:has(#cnblogs_post_body) .postDesc::before,
+.post:has(#cnblogs_post_body) .postDesc:before {
+	content: none !important;
+	display: none !important;
+}
+
+/* 强化收藏按钮匹配（兼容不同写法） */
+.post .postDesc a[onclick^="AddToWz"],
+.post .postDesc a[onclick*="AddToWz("] {
+	background: linear-gradient(90deg, rgb(from var(--theme-color) r g b / .14), rgb(from var(--theme-color) r g b / .10)) !important;
+	border: 1px solid rgb(from var(--theme-color) r g b / .32) !important;
+	color: var(--theme-color) !important;
+	border-radius: 999px !important;
+	padding: 4px 10px !important;
+	box-shadow: var(--box-shadow) !important;
+	text-decoration: none !important;
+	font-weight: 700 !important;
+}
+.post .postDesc a[onclick^="AddToWz"]:hover,
+.post .postDesc a[onclick*="AddToWz("]:hover {
+	background: var(--item-hover-bg-color) !important;
+	filter: brightness(1.05) !important;
 } 
