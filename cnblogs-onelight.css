@@ -710,7 +710,7 @@ table#blogCalendar,
 table#blogCalendar.Cal { display: none !important; } 
 
 /* ---------------->> 隐藏粉丝/关注模块 <<---------------- */
-/* 允许显示，交由底部“作者资料：横向排列”规则控制外观 */
+/* 允许显示，交由底部"作者资料：横向排列"规则控制外观 */
 
 
 /* ---------------->> 文章信息卡移至导航区下方（居中固定） <<---------------- */
@@ -1638,4 +1638,30 @@ body::before { z-index: -2 !important; }
 #blogTitle .navbar ul,
 #blogTitle .site_nav ul {
   margin-left: auto !important; /* 导航在标题行内靠右停靠 */
+}
+
+/* ---------------->> 覆盖：关闭右侧浮动信息卡，恢复为正文上方信息行 <<---------------- */
+body:has(#cnblogs_post_body) .post .postDesc,
+body:has(#cnblogs_post_body) .post .postDesc.postinfo,
+body:has(#cnblogs_post_body) .post .postDesc.post-float-right {
+  position: static !important;
+  float: none !important;
+  clear: none !important;
+  width: auto !important;
+  right: auto !important;
+  left: auto !important;
+  top: auto !important;
+  margin: 10px 0 !important;
+}
+
+/* 正文不再为右侧信息卡预留空间 */
+body:has(#cnblogs_post_body) .post .postTitle,
+body:has(#cnblogs_post_body) .post #cnblogs_post_body {
+  margin-right: 0 !important;
+}
+
+/* 隐藏信息卡内公告区，避免大块内容挤占版面 */
+.post .postDesc .postinfo-notice,
+.post .postDesc #blog-news {
+  display: none !important;
 }

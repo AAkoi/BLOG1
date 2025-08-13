@@ -1,0 +1,25 @@
+/* 覆盖：关闭右侧浮动信息卡，恢复为正文上方信息行 */
+body:has(#cnblogs_post_body) .post .postDesc,
+body:has(#cnblogs_post_body) .post .postDesc.postinfo,
+body:has(#cnblogs_post_body) .post .postDesc.post-float-right {
+	position: static !important;
+	float: none !important;
+	clear: none !important;
+	width: auto !important;
+	right: auto !important;
+	left: auto !important;
+	top: auto !important;
+	margin: 10px 0 !important;
+}
+
+/* 正文不再为右侧信息卡预留空间 */
+body:has(#cnblogs_post_body) .post .postTitle,
+body:has(#cnblogs_post_body) .post #cnblogs_post_body {
+	margin-right: 0 !important;
+}
+
+/* 隐藏信息卡内公告区，避免大块内容挤占版面 */
+.post .postDesc .postinfo-notice,
+.post .postDesc #blog-news {
+	display: none !important;
+} 
