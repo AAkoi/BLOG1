@@ -1,25 +1,63 @@
-/* 覆盖：关闭右侧浮动信息卡，恢复为正文上方信息行 */
-body:has(#cnblogs_post_body) .post .postDesc,
-body:has(#cnblogs_post_body) .post .postDesc.postinfo,
-body:has(#cnblogs_post_body) .post .postDesc.post-float-right {
-	position: static !important;
-	float: none !important;
-	clear: none !important;
-	width: auto !important;
-	right: auto !important;
-	left: auto !important;
-	top: auto !important;
-	margin: 10px 0 !important;
+/* 覆盖：右侧信息卡（紧凑、透明框、放大头像） */
+body:has(#cnblogs_post_body) .post .postDesc.postinfo {
+  position: relative !important;
+  float: right !important;
+  clear: right !important;
+  width: 280px !important; /* 更紧凑 */
+  margin: 0 0 12px 16px !important;
+  background: transparent !important; /* 透明框 */
+  border: 1px solid rgb(from var(--theme-color) r g b / 0.16) !important;
+  border-radius: var(--radius-large) !important;
+  box-shadow: none !important;
+  padding: 12px 12px 12px 104px !important; /* 左侧为头像预留空间 */
+  line-height: 1.65 !important;
 }
 
-/* 正文不再为右侧信息卡预留空间 */
+/* 放大头像（使用 --author-avatar-url） */
+body:has(#cnblogs_post_body) .post .postDesc.postinfo::before {
+  content: "";
+  position: absolute; left: 12px; top: 12px;
+  width: 72px; height: 72px; border-radius: 50%;
+  background-image: var(--author-avatar-url);
+  background-size: cover; background-position: center; background-color: #fff;
+  border: 3px solid rgba(255,255,255,.85);
+}
+
+/* 信息行紧凑排版 */
+.post .postDesc.postinfo .postinfo-name { position: absolute; left: 12px; top: 90px; }
+.post .postDesc.postinfo .postinfo-name a { color: var(--theme-color); font-weight: 800; text-decoration: none; background: var(--theme-light-color); padding: 2px 8px; border-radius: 999px; box-shadow: var(--box-shadow); }
+.post .postDesc.postinfo .postinfo-date { font-size: 12px; color: var(--light-color); }
+.post .postDesc.postinfo .postinfo-stats { font-size: 13px; color: rgb(from var(--text-color) r g b / .88); margin: 4px 0; }
+.post .postDesc.postinfo .postinfo-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.post .postDesc.postinfo .postinfo-actions a { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 999px; background: var(--theme-light-color); color: var(--text-color); text-decoration: none; box-shadow: var(--box-shadow); font-size: 12px; }
+
+/* 隐藏公告/注入块，避免挤占空间 */
+.post .postDesc.postinfo .postinfo-notice,
+.post .postDesc.postinfo #blog-news { display: none !important; }
+
+/* 将推荐区（#div_digg）作为信息卡底部区域的样式 */
+.post .postDesc.postinfo #div_digg {
+  display: flex !important; align-items: center !important; gap: 10px !important;
+  margin-top: 8px !important; padding-top: 8px !important;
+  border-top: 1px dashed var(--tb-border-color) !important;
+  background: transparent !important; border: 0 !important; box-shadow: none !important;
+}
+/* 去掉“反对”等无关元素（防御式：同时在 JS 中也会移除） */
+.post .postDesc.postinfo #div_digg .buryit,
+.post .postDesc.postinfo #div_digg .clear,
+.post .postDesc.postinfo #div_digg .diggword { display: none !important; }
+/* 推荐按钮的紧凑芯片外观 */
+.post .postDesc.postinfo #div_digg .diggit {
+  flex: 0 0 auto; display: inline-flex !important; align-items: center !important; gap: 6px !important;
+  padding: 6px 10px !important; border-radius: 999px !important;
+  background: rgb(from var(--theme-color) r g b / .10) !important; color: var(--theme-color) !important;
+  border: 1px solid rgb(from var(--theme-color) r g b / .18) !important; box-shadow: var(--box-shadow) !important;
+}
+.post .postDesc.postinfo #div_digg .diggit .diggnum {
+  width: 22px; height: 22px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
+  background: var(--theme-color); color: #fff; font-weight: 800; font-size: 12px; margin-left: 4px;
+}
+
+/* 纠正正文右侧预留：允许为信息卡让出空间 */
 body:has(#cnblogs_post_body) .post .postTitle,
-body:has(#cnblogs_post_body) .post #cnblogs_post_body {
-	margin-right: 0 !important;
-}
-
-/* 隐藏信息卡内公告区，避免大块内容挤占版面 */
-.post .postDesc .postinfo-notice,
-.post .postDesc #blog-news {
-	display: none !important;
-} 
+body:has(#cnblogs_post_body) .post #cnblogs_post_body { margin-right: 300px !important; } 
