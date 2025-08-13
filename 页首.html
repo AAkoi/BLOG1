@@ -9,7 +9,7 @@ if (window.__KEEP_IMPOSSIBLE__) {
     var origRemoveChild = NodeProto.removeChild;
     if (origRemoveChild) {
       NodeProto.removeChild = function(child){
-        try { if (child && child.classList && child.classList.contains('possible-impossible')) return child; } catch (e) {}
+        try { if (child && child.classList && (child.classList.contains('possible-impossible') || child.classList.contains('profile-impossible'))) return child; } catch (e) {}
         return origRemoveChild.call(this, child);
       };
     }
