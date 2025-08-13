@@ -12,6 +12,7 @@
 #mainContent .day .postDesc {
 	background: var(--mica-bg) !important;
 	border: var(--mica-border) !important;
+	margin: 0 !important;
 }
 
 #mainContent .day .postTitle {
@@ -31,9 +32,13 @@
 	box-shadow: var(--box-shadow) !important;
 }
 
+/* 相邻段落边框贴合，避免出现 1px 细缝 */
+#mainContent .day .postTitle + .postCon,
+#mainContent .day .postCon + .postDesc { margin-top: -1px !important; }
+
 /* 隔断与清理元素处理 */
 #mainContent .day .postSeparator { display: none !important; }
-#mainContent .day .clear { height: 0 !important; margin: 0 !important; }
+#mainContent .day .clear { display: none !important; }
 
 /* 标题文本样式（支持链接与 span.home-post-title） */
 #mainContent .day .postTitle a,
