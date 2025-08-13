@@ -73,3 +73,35 @@
 	transform: translateY(-1px) !important;
 	box-shadow: var(--box-shadow-large) !important;
 } 
+
+/* 统一外层卡片容器，彻底消除割裂感 */
+#mainContent .day .home-card {
+	-webkit-backdrop-filter: var(--mica-blur);
+	backdrop-filter: var(--mica-blur);
+	background: var(--mica-bg) !important;
+	border: var(--mica-border) !important;
+	border-radius: 12px !important;
+	box-shadow: var(--box-shadow-large) !important;
+	margin: 16px 0 !important;
+	overflow: hidden !important;
+}
+#mainContent .day .home-card .postTitle,
+#mainContent .day .home-card .postCon,
+#mainContent .day .home-card .postDesc {
+	background: transparent !important;
+	border: 0 !important;
+	margin: 0 !important;
+	box-shadow: none !important;
+}
+#mainContent .day .home-card .postTitle { padding: 12px 16px !important; }
+#mainContent .day .home-card .postCon { padding: 12px 16px !important; }
+#mainContent .day .home-card .postDesc { padding: 10px 16px !important; }
+
+/* 弱化标题内部徽章，避免标题与卡面再叠一层造成割裂 */
+#mainContent .day .postTitle .home-post-title {
+	background: transparent !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+	padding: 0 !important;
+} 
