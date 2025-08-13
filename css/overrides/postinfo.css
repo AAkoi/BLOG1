@@ -85,3 +85,9 @@ body:has(#cnblogs_post_body) .post .postDesc.postinfo .postinfo-avatar {
 
 /* 若存在头像元素，则禁用伪元素，避免重复 */
 body:has(#cnblogs_post_body) .post .postDesc.postinfo:has(.postinfo-avatar)::before { content: none !important; } 
+
+/* 彻底移除右侧信息卡（并恢复正文外边距） */
+body:has(#cnblogs_post_body) .post .postDesc.post-float-right.postinfo { display: none !important; }
+body:has(#cnblogs_post_body) .post .postDesc.postinfo { display: none !important; }
+body:has(#cnblogs_post_body) .post .postTitle,
+body:has(#cnblogs_post_body) .post #cnblogs_post_body { margin-right: 0 !important; } 
