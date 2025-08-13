@@ -22,10 +22,12 @@
     welcome.appendChild(suf);
     if (!exist) title.appendChild(welcome);
 
-    // 移除 POSSIBLE 注入
-    title.querySelectorAll('.possible-impossible').forEach(el => el.remove());
-    const oldPossibleStyle = document.getElementById('possible-css');
-    if (oldPossibleStyle) oldPossibleStyle.remove();
+    // 移除 POSSIBLE 注入（当未要求保留 IMPOSSIBLE 时）
+    if (!window.__KEEP_IMPOSSIBLE__) {
+      title.querySelectorAll('.possible-impossible').forEach(el => el.remove());
+      const oldPossibleStyle = document.getElementById('possible-css');
+      if (oldPossibleStyle) oldPossibleStyle.remove();
+    }
 
     (function injectProfileImpossible(){
       const host = document.querySelector('#profile_block');

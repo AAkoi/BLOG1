@@ -1665,3 +1665,112 @@ body:has(#cnblogs_post_body) .post #cnblogs_post_body {
 .post .postDesc #blog-news {
   display: none !important;
 }
+
+/* --- 合并自 css/overrides/homeCards.css：主页文章三段合为一体卡片 --- */
+/* 首页：每篇文章作为独立气泡卡片（去除 day 容器默认内边距与边框影响） */
+#mainContent .day {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+/* 卡片三段：标题/摘要/信息行 组合为一张卡（基础合并样式） */
+#mainContent .day .postTitle,
+#mainContent .day .postCon,
+#mainContent .day .postDesc {
+  background: var(--mica-bg) !important;
+  border: var(--mica-border) !important;
+  margin: 0 !important;
+}
+
+#mainContent .day .postTitle {
+  border-radius: 12px 12px 0 0 !important;
+  padding: 12px 16px !important;
+  margin-top: 16px !important;
+  box-shadow: var(--box-shadow) !important;
+}
+#mainContent .day .postCon {
+  padding: 12px 16px !important;
+  border-top: 0 !important;
+}
+#mainContent .day .postDesc {
+  padding: 10px 16px !important;
+  border-top: 0 !important;
+  border-radius: 0 0 12px 12px !important;
+  box-shadow: var(--box-shadow) !important;
+}
+
+/* 相邻段落边框贴合，避免出现 1px 细缝 */
+#mainContent .day .postTitle + .postCon,
+#mainContent .day .postCon + .postDesc { margin-top: -1px !important; }
+
+/* 隔断与清理元素处理 */
+#mainContent .day .postSeparator { display: none !important; }
+#mainContent .day .clear { display: none !important; }
+
+/* 标题文本样式（支持链接与 span.home-post-title） */
+#mainContent .day .postTitle a,
+#mainContent .day .postTitle .home-post-title {
+  color: var(--theme-color) !important;
+  font-weight: 900 !important;
+  text-decoration: none !important;
+  font-size: 1.3rem !important;
+}
+
+/* 摘要段落间距优化 */
+#mainContent .day .c_b_p_desc { margin: 0 !important; line-height: 1.8 !important; }
+
+/* "阅读全文"按钮装饰（主题蓝） */
+#mainContent .day .c_b_p_desc_readmore {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  background: linear-gradient(135deg, var(--theme-color), #4e84ff) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 999px !important;
+  padding: 6px 14px !important;
+  font-weight: 800 !important;
+  text-decoration: none !important;
+  box-shadow: var(--box-shadow) !important;
+  transition: transform .15s ease, filter .15s ease, box-shadow .15s ease !important;
+}
+#mainContent .day .c_b_p_desc_readmore::after { content: "→"; }
+#mainContent .day .c_b_p_desc_readmore:hover {
+  filter: brightness(1.06) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: var(--box-shadow-large) !important;
+}
+
+/* 统一外层卡片容器，彻底消除割裂感（整合 .home-card 容器） */
+#mainContent .day .home-card {
+  -webkit-backdrop-filter: var(--mica-blur);
+  backdrop-filter: var(--mica-blur);
+  background: var(--mica-bg) !important;
+  border: var(--mica-border) !important;
+  border-radius: 12px !important;
+  box-shadow: var(--box-shadow-large) !important;
+  margin: 16px 0 !important;
+  overflow: hidden !important;
+}
+#mainContent .day .home-card .postTitle,
+#mainContent .day .home-card .postCon,
+#mainContent .day .home-card .postDesc {
+  background: transparent !important;
+  border: 0 !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+}
+#mainContent .day .home-card .postTitle { padding: 12px 16px !important; }
+#mainContent .day .home-card .postCon { padding: 12px 16px !important; }
+#mainContent .day .home-card .postDesc { padding: 10px 16px !important; }
+
+/* 弱化标题内部徽章，避免标题与卡面再叠一层造成割裂 */
+#mainContent .day .postTitle .home-post-title {
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
