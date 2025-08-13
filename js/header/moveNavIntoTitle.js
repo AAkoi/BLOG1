@@ -3,10 +3,12 @@
     const title = document.querySelector('#blogTitle');
     if (!title) return;
 
-    // 清理可能的干扰元素
-    title.querySelectorAll('.possible-impossible').forEach(n => n.remove());
-    const oldCss = document.getElementById('possible-css');
-    if (oldCss) oldCss.remove();
+    // 清理可能的干扰元素（当未要求保留 IMPOSSIBLE 时）
+    if (!window.__KEEP_IMPOSSIBLE__) {
+      title.querySelectorAll('.possible-impossible').forEach(n => n.remove());
+      const oldCss = document.getElementById('possible-css');
+      if (oldCss) oldCss.remove();
+    }
 
     const nav = document.querySelector('#navList') 
              || document.querySelector('[id*="nav"] ul') 

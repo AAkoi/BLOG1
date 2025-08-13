@@ -1,4 +1,5 @@
 (function(){
+  if (window.__KEEP_IMPOSSIBLE__) return;
   function purge(){
     const title = document.querySelector('#blogTitle');
     if (!title) return;
@@ -12,9 +13,4 @@
     purge();
   }
   window.addEventListener('load', purge, { once: true });
-  const title = document.querySelector('#blogTitle');
-  if (title) {
-    const mo = new MutationObserver(() => purge());
-    mo.observe(title, { childList: true, subtree: true });
-  }
 })(); 
