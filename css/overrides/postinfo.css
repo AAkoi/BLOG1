@@ -61,3 +61,27 @@ body:has(#cnblogs_post_body) .post .postDesc.postinfo::before {
 /* 纠正正文右侧预留：允许为信息卡让出空间 */
 body:has(#cnblogs_post_body) .post .postTitle,
 body:has(#cnblogs_post_body) .post #cnblogs_post_body { margin-right: 300px !important; } 
+
+/* 强制优先级覆盖（保障在平台样式之后仍然生效） */
+body:has(#cnblogs_post_body) .post .postDesc.postinfo {
+	width: 280px !important;
+	padding: 12px 12px 12px 104px !important;
+	float: right !important;
+	clear: right !important;
+	border: 1px solid rgba(22,111,243,.16) !important; /* 兼容色值写法 */
+	background: transparent !important;
+	border-radius: var(--radius-large) !important;
+}
+
+/* 头像元素版本（避免 ::before 被其他样式覆盖） */
+body:has(#cnblogs_post_body) .post .postDesc.postinfo .postinfo-avatar {
+	position: absolute; left: 12px; top: 12px;
+	width: 72px; height: 72px; border-radius: 50%;
+	background-image: var(--author-avatar-url);
+	background-size: cover; background-position: center; background-color: #fff;
+	border: 3px solid rgba(255,255,255,.85);
+	box-shadow: var(--box-shadow);
+}
+
+/* 若存在头像元素，则禁用伪元素，避免重复 */
+body:has(#cnblogs_post_body) .post .postDesc.postinfo:has(.postinfo-avatar)::before { content: none !important; } 
