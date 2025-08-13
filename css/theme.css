@@ -1,3 +1,12 @@
 /* 主题聚合入口：先主样式，再覆盖 */
+:root {
+--theme-color: #2e6ff2;
+--theme-light-color: rgba(46,111,242,.12);
+--mica-bg: rgba(255,255,255,.66);
+--mica-border: 1px solid rgba(0,0,0,.08);
+--box-shadow: 0 6px 16px rgba(0,0,0,.08);
+--box-shadow-large: 0 12px 28px rgba(0,0,0,.16);
+}
 @import url("../cnblogs-onelight.css");
-@import url("./overrides/postinfo.css"); 
+@import url("./overrides/postinfo.css");
+@import url("./overrides/homeCards.css"); 
