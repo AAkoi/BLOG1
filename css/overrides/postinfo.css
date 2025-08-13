@@ -91,3 +91,54 @@ body:has(#cnblogs_post_body) .post .postDesc.post-float-right.postinfo { display
 body:has(#cnblogs_post_body) .post .postDesc.postinfo { display: none !important; }
 body:has(#cnblogs_post_body) .post .postTitle,
 body:has(#cnblogs_post_body) .post #cnblogs_post_body { margin-right: 0 !important; } 
+
+/* 移除 postDesc 内可能残留的 ::before 伪元素（头像/装饰） */
+.post .postDesc::before { content: none !important; display: none !important; }
+
+/* 收藏按钮：蓝色主题芯片 */
+.post .postDesc a[onclick^="AddToWz"] {
+	background: linear-gradient(90deg, rgb(from var(--theme-color) r g b / .14), rgb(from var(--theme-color) r g b / .10)) !important;
+	border: 1px solid rgb(from var(--theme-color) r g b / .32) !important;
+	color: var(--theme-color) !important;
+	border-radius: 999px !important;
+	padding: 4px 10px !important;
+	box-shadow: var(--box-shadow) !important;
+	text-decoration: none !important;
+	font-weight: 700 !important;
+}
+.post .postDesc a[onclick^="AddToWz"]:hover {
+	background: var(--item-hover-bg-color) !important;
+	filter: brightness(1.05) !important;
+}
+
+/* 举报按钮：中性灰芯片（尽量匹配常见 report 链接/ID/onclick） */
+.post .postDesc a[id*="report" i],
+.post .postDesc a[href*="report" i],
+.post .postDesc a[onclick*="report" i] {
+	background: linear-gradient(90deg, rgba(0,0,0,.06), rgba(0,0,0,.04)) !important;
+	border: 1px solid rgba(0,0,0,.12) !important;
+	color: #555 !important;
+	border-radius: 999px !important;
+	padding: 4px 10px !important;
+	box-shadow: var(--box-shadow) !important;
+	text-decoration: none !important;
+	font-weight: 600 !important;
+}
+.post .postDesc a[id*="report" i]:hover,
+.post .postDesc a[href*="report" i]:hover,
+.post .postDesc a[onclick*="report" i]:hover {
+	filter: brightness(1.02) !important;
+}
+
+/* 作者名：蓝色强调（同时匹配博客主页与个人主页链接） */
+.post .postDesc a[href*="cnblogs.com/blueaoi"],
+.post .postDesc a[href*="home.cnblogs.com/u/blueaoi"] {
+	color: var(--theme-color) !important;
+	background: var(--theme-light-color) !important;
+	border: 1px solid rgb(from var(--theme-color) r g b / .28) !important;
+	border-radius: 999px !important;
+	padding: 2px 8px !important;
+	font-weight: 800 !important;
+	box-shadow: var(--box-shadow) !important;
+	text-decoration: none !important;
+} 
